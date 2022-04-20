@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[9278],{3812:function(e){e.exports=JSON.parse('{"name":"Greedy","permalink":"/leetcode/solutions/tags/greedy","docs":[{"id":"11","title":"11. Container With Most Water (Medium)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/11"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
