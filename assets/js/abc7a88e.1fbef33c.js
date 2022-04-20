@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[69],{388:function(e){e.exports=JSON.parse('{"name":"Divide and Conquer","permalink":"/solutions/tags/divide-and-conquer","docs":[{"id":"4","title":"4. Median of Two Sorted Arrays (Hard)","description":"<SolutionDocHead","permalink":"/solutions/4"}],"allTagsPath":"/solutions/tags"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[88],{6192:function(e){e.exports=JSON.parse('{"name":"Math","permalink":"/leetcode/solutions/tags/math","docs":[{"id":"2","title":"2. Add Two Numbers (Medium)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/2"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);

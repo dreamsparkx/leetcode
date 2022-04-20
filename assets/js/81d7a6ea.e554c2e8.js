@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[909],{6817:function(e){e.exports=JSON.parse('{"name":"Binary Search","permalink":"/solutions/tags/binary-search","docs":[{"id":"4","title":"4. Median of Two Sorted Arrays (Hard)","description":"<SolutionDocHead","permalink":"/solutions/4"}],"allTagsPath":"/solutions/tags"}')}}]);

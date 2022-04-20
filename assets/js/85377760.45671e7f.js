@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[357],{9375:function(o){o.exports=JSON.parse('{"name":"Monotonic Stack","permalink":"/solutions/tags/monotonic-stack","docs":[{"id":"42","title":"42. Trapping Rain Water (Hard)","description":"<SolutionDocHead","permalink":"/solutions/42"}],"allTagsPath":"/solutions/tags"}')}}]);

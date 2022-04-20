@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[894],{2030:function(e){e.exports=JSON.parse('{"name":"Sorting","permalink":"/solutions/tags/sorting","docs":[{"id":"15","title":"15. 3Sum (Medium)","description":"<SolutionDocHead","permalink":"/solutions/15"}],"allTagsPath":"/solutions/tags"}')}}]);
