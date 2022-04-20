@@ -1,0 +1,70 @@
+---
+title: 3. Longest Substring Without Repeating Characters (Medium)
+tags:
+  - Hash Table
+  - String
+  - Sliding Window
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+import Tags from "../src/components/Tags";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Hash Table", "String", "Sliding Window"]}
+  companies={["Adobe", "Amazon", "Bloomberg", "Yelp"]}
+  url={
+    "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  }
+/>
+
+Given a string `s`, find the length of the <b>longest substring</b> without repeating characters.
+
+<b>Example 1:</b>
+
+```
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+```
+
+<b>Example 3:</b>
+
+```
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+```
+
+```ts title=solution.ts
+function lengthOfLongestSubstring(s: string): number {
+  if (!s) {
+    return 0;
+  }
+  let start: number = 0,
+    end: number = 0,
+    result: number = 0;
+  const uniqueCharacters = new Set();
+  while (end < s.length) {
+    if (!uniqueCharacters.has(s[end])) {
+      // new char
+      uniqueCharacters.add(s[end]);
+      end++;
+      result = Math.max(result, uniqueCharacters.size);
+    } else {
+      uniqueCharacters.delete(s[start]);
+      start++;
+    }
+  }
+  return result;
+}
+```

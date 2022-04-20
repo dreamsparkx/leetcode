@@ -1,0 +1,71 @@
+---
+title: 6. Zigzag Conversion (Medium)
+tags:
+  - String
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["String"]}
+  url={"https://leetcode.com/problems/zigzag-conversion/"}
+/>
+
+The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+```
+P   A   H   N
+A P L S I I G
+Y   I   R
+```
+
+And then read line by line: `"PAHNAPLSIIGYIR"`
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+```
+string convert(string s, int numRows);
+```
+
+<b>Example 1:</b>
+
+```
+Input: s = "PAYPALISHIRING", numRows = 3
+Output: "PAHNAPLSIIGYIR"
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "PAYPALISHIRING", numRows = 4
+Output: "PINALSIGYAHRPI"
+Explanation:
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
+```
+
+<b>Example 3:</b>
+
+```
+Input: s = "A", numRows = 1
+Output: "A"
+```
+
+```ts title=solution.ts
+function convert(s: string, numRows: number): string {
+  const rows = [];
+  let row = 0,
+    step = 1;
+  for (let i = 0; i < s.length; i++) {
+    rows[row] = rows[row] ? rows[row] + s[i] : s[i]; // add char to current row string
+    row += step; // update row
+    if (row === numRows - 1 || row === 0) {
+      step *= -1; //  if it hit border, turn the direction
+    }
+  }
+  return rows.join("");
+}
+```

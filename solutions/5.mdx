@@ -1,0 +1,59 @@
+---
+title: 5. Longest Palindromic Substring (Medium)
+tags:
+  - String
+  - Dynamic Programming
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["String", "Dynamic Programming"]}
+  companies={["Amazon", "Microsoft", "Bloomberg", "Uber"]}
+  url={"https://leetcode.com/problems/longest-palindromic-substring/"}
+/>
+
+Given a string `s`, return the longest palindromic substring in `s`.
+
+<b>Example 1:</b>
+
+```
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "cbbd"
+Output: "bb"
+```
+
+```ts title=solution.ts
+function longestPalindrome(s: string): string {
+  let longest: string = "";
+  for (let i = 0; i < s.length; i++) {
+    let temp = "";
+    temp = paCenterBy(s, i, i);
+    if (temp.length > longest.length) {
+      longest = temp;
+    }
+    temp = paCenterBy(s, i, i + 1);
+    if (temp.length > longest.length) {
+      longest = temp;
+    }
+  }
+  return longest;
+}
+
+function paCenterBy(s: string, cLeft: number, cRight: number) {
+  let result = "";
+  while (cLeft >= 0 && cRight < s.length && s[cLeft] == s[cRight]) {
+    cLeft--;
+    cRight++;
+  }
+  return s.substring(cLeft + 1, cRight);
+}
+```

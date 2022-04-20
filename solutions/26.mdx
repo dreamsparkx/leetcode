@@ -1,0 +1,77 @@
+---
+title: 26. Remove Duplicates from Sorted Array (Easy)
+tags:
+  - Array
+  - Two Pointers
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["Array", "Two Pointers"]}
+  url={"https://leetcode.com/problems/remove-duplicates-from-sorted-array/"}
+/>
+
+Given an integer array `nums` sorted in <b>non-decreasing order</b>, remove the duplicates [in-place](https://en.wikipedia.org/wiki/In-place_algorithm) such that each unique element appears only <b>once</b>. The <b>relative order</b> of the elements should be kept the <b>same</b>.
+
+Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the <b>first part</b> of the array `nums`. More formally, if there are `k` elements after removing the duplicates, then the first `k` elements of `nums` should hold the final result. It does not matter what you leave beyond the first `k` elements.
+
+Return `k` after placing the final result in the first `k` slots of `nums`.
+
+Do <b>not</b> allocate extra space for another array. You must do this by `modifying the input array` in-place with O(1) extra memory.
+
+<b>Custom Judge:</b>
+
+The judge will test your solution with the following code:
+
+```
+int[] nums = [...]; // Input array
+int[] expectedNums = [...]; // The expected answer with correct length
+
+int k = removeDuplicates(nums); // Calls your implementation
+
+assert k == expectedNums.length;
+for (int i = 0; i < k; i++) {
+    assert nums[i] == expectedNums[i];
+}
+
+```
+
+If all assertions pass, then your solution will be <b>accepted</b>.
+
+<b>Example 1:</b>
+
+```
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2,_]
+Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+<b>Example 2:</b>
+
+```
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+```ts title=solution.ts
+function removeDuplicates(nums: number[]): number {
+  if (nums.length == 0) {
+    return 0;
+  }
+  let curr = nums[0];
+  let toFill = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] != curr) {
+      curr = nums[i];
+      nums[toFill] = curr;
+      toFill++;
+    }
+  } //for i
+  return toFill;
+}
+```
