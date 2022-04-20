@@ -10,7 +10,7 @@ const config = {
   title: 'Leetcode',
   tagline: 'Leetcode Solutions',
   url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/leetcode',
+  baseUrl: '/leetcode/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
