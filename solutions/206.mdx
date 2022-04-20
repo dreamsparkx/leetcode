@@ -1,0 +1,72 @@
+---
+title: 206. Reverse Linked List (Easy)
+tags:
+  - Linked List
+  - Recursion
+---
+
+import imageURL1 from "@site/static/img/solutions/206/image1.png";
+import imageURL2 from "@site/static/img/solutions/206/image2.png";
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["Linked List", "Recursion"]}
+  url={"https://leetcode.com/problems/reverse-linked-list/"}
+/>
+
+Given the `head` of a singly linked list, reverse the list, and return the reversed list.
+
+<b>Example 1:</b>
+<br />
+
+<img src={imageURL1} width="483" height="342" />
+
+```
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+```
+
+<b>Example 2:</b>
+<br />
+
+<img src={imageURL2} width="483" height="342" />
+
+```
+Input: head = [1,2]
+Output: [2,1]
+```
+
+<b>Example 3:</b>
+
+```
+Input: head = []
+Output: []
+```
+
+```ts title=solution.ts
+class ListNode {
+  val: number;
+  next: ListNode | null;
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+}
+
+function reverseList(head: ListNode | null): ListNode | null {
+  let fakeHead = new ListNode();
+  reverse(head, fakeHead);
+  return fakeHead.next;
+}
+
+function reverse(node: ListNode, fakeHead: ListNode) {
+  if (node === null) {
+    return fakeHead;
+  }
+  let tail: ListNode = reverse(node.next, fakeHead);
+  tail.next = node;
+  node.next = null;
+  return node;
+}
+```
