@@ -1,0 +1,90 @@
+---
+title: 30. Substring with Concatenation of All Words (Hard)
+tags:
+  - Hash Table
+  - String
+  - Sliding Window
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"hard"}
+  labels={["Hash Table", "String", "Sliding Window"]}
+  url={
+    "https://leetcode.com/problems/substring-with-concatenation-of-all-words/"
+  }
+/>
+
+You are given a string `s` and an array of strings `words` of the <b>same length</b>. Return all starting indices of substring(s) in `s` that is a concatenation of each word in `words` <b>exactly once, in any order</b>, and <b>without any intervening characters</b>.
+
+You can return the answer in <b>any order</b>.
+
+<b>Example 1:</b>
+
+```
+Input: s = "barfoothefoobarman", words = ["foo","bar"]
+Output: [0,9]
+Explanation: Substrings starting at index 0 and 9 are "barfoo" and "foobar" respectively.
+The output order does not matter, returning [9,0] is fine too.
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "wordgoodgoodgoodbestword", words = ["word","good","best","word"]
+Output: []
+```
+
+<b>Example 3:</b>
+
+```
+Input: s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
+Output: [6,9,12]
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 10<sup>4</sup>
+- `s` consists of lower-case English letters.
+- `1 <= words.length <= 5000`
+- `1 <= words[i].length <= 30`
+- `words[i]` consists of lower-case English letters.
+
+```ts title=solution.ts
+function findSubstring(s: string, words: string[]): number[] {
+  let res: number[] = []; // answer
+  let wordLength = words[0].length;
+  let wordCount = words.length;
+  let len = wordCount * wordLength; // length of sliding window
+  let map = {};
+  for (const word of words) {
+    map[word] = map[word] + 1 || 1;
+  }
+  for (let i = 0; i < s.length - len + 1; i++) {
+    const sub = s.slice(i, i + len); // Generate substring of sliding window length
+    if (isConcat(sub, map, wordLength)) {
+      res.push(i);
+    }
+  }
+  return res; // return answer
+}
+
+function isConcat(
+  sub: string,
+  map: Record<string, number>,
+  wordLength: number
+): boolean {
+  let seen = {};
+  for (let i = 0; i < sub.length; i += wordLength) {
+    let word = sub.slice(i, i + wordLength);
+    seen[word] = seen[word] + 1 || 1;
+  }
+  for (let key in map) {
+    if (map[key] !== seen[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
