@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[1417],{8701:function(e){e.exports=JSON.parse('{"name":"Counting","permalink":"/leetcode/solutions/tags/counting","docs":[{"id":"347","title":"347. Top K Frequent Elements (Medium)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/347"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
