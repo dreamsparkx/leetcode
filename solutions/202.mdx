@@ -1,0 +1,76 @@
+---
+title: 202. Happy Number (Easy)
+tags:
+  - Hash Table
+  - Math
+  - Two Pointers
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["Hash Table", "Math", "Two Pointers"]}
+  companies={["Uber", "Twitter", "Airbnb"]}
+  url={"https://leetcode.com/problems/happy-number/"}
+/>
+
+Write an algorithm to determine if a number `n` is happy.
+
+A <b>happy number</b> is a number defined by the following process:
+
+- Starting with any positive integer, replace the number by the sum of the squares of its digits.
+- Repeat the process until the number equals 1 (where it will stay), or it <b>loops endlessly in a cycle</b> which does not include 1.
+- Those numbers for which this process <b>ends in 1</b> are happy.
+
+Return `true` if `n` is a happy number, and `false` if not.
+
+<b>Example 1:</b>
+<br />
+
+<code>
+Input: n = 19
+
+Output: true
+Explanation:
+1<sup>2</sup> + 9<sup>2</sup> = 82
+8<sup>2</sup> + 2<sup>2</sup> = 68
+6<sup>2</sup> + 8<sup>2</sup> = 100
+1<sup>2</sup> + 0<sup>2</sup> + 0<sup>2</sup> = 1
+
+</code>
+
+<b>Example 2:</b>
+
+```
+Input: n = 2
+Output: false
+```
+
+```ts title=solution.ts
+function getDigits(num) {
+  const digits = [];
+  while (num > 0) {
+    digits.push(num % 10);
+    num = Math.floor(num / 10);
+  }
+  return digits;
+}
+
+function getSquaredTotal(digits: number[]) {
+  return digits.reduce((total, digit) => total + digit * digit, 0);
+}
+
+function isHappy(n: number): boolean {
+  const seen = new Set();
+  while (n !== 1) {
+    let digits = getDigits(n);
+    n = getSquaredTotal(digits);
+    if (seen.has(n)) {
+      return false;
+    }
+    seen.add(n);
+  }
+  return true;
+}
+```
