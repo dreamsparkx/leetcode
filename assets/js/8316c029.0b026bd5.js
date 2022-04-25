@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[6138],{8741:function(e){e.exports=JSON.parse('{"name":"Matrix","permalink":"/leetcode/solutions/tags/matrix","docs":[{"id":"37","title":"37. Sudoku Solver (Hard)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/37"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
