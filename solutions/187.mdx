@@ -1,0 +1,70 @@
+---
+title: 187. Repeated DNA Sequences (Medium)
+tags:
+  - Hash Table
+  - String
+  - Bit Manipulation
+  - Sliding Window
+  - Rolling Hash
+  - Hash Function
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={[
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Sliding Window",
+    "Rolling Hash",
+    "Hash Function",
+  ]}
+  companies={["LinkedIn"]}
+  url={"https://leetcode.com/problems/repeated-dna-sequences/"}
+/>
+
+The <b>DNA sequence</b> is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.
+
+- For example, `"ACGAATTCCG"` is a <b>DNA sequence</b>.
+
+When studying <b>DNA</b>, it is useful to identify repeated sequences within the DNA.
+
+Given a string `s` that represents a <b>DNA sequence</b>, return all the `10`-<b>letter-long</b> sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in <b>any order</b>.
+
+<b>Example 1:</b>
+
+```
+Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+Output: ["AAAAACCCCC","CCCCCAAAAA"]
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "AAAAAAAAAAAAA"
+Output: ["AAAAAAAAAA"]
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 10<sup>5</sup>
+- `s[i]` is either `'A'`, `'C'`, `'G'`, or `'T'`.
+
+```ts title=solution.ts
+function findRepeatedDnaSequences(s: string): string[] {
+  let curr = s.slice(0, 10);
+  const seen = new Set([curr]);
+  const res: Set<string> = new Set();
+  for (let i = 10; i < s.length; i++) {
+    curr = curr.slice(1) + s[i];
+    if (seen.has(curr)) {
+      res.add(curr);
+    }
+    seen.add(curr);
+  }
+  return [...res];
+}
+```
