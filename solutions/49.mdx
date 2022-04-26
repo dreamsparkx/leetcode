@@ -1,0 +1,82 @@
+---
+title: 49. Group Anagrams (Medium)
+tags:
+  - Hash Table
+  - String
+  - Sorting
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Hash Table", "String", "Sorting"]}
+  companies={["Amazon", "Facebook", "Bloomberg", "Uber"]}
+  url={"https://leetcode.com/problems/group-anagrams/"}
+/>
+
+Given an array of strings `strs`, group <b>the anagrams</b> together. You can return the answer in <b>any order</b>.
+
+An <b>Anagram</b> is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+<b>Example 1:</b>
+
+```
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+<b>Example 2:</b>
+
+```
+Input: strs = [""]
+Output: [[""]]
+```
+
+<b>Example 3:</b>
+
+```
+Input: strs = ["a"]
+Output: [["a"]]
+```
+
+<b>Constraints:</b>
+
+- 1 <= strs.length <= 10<sup>4</sup>
+- `0 <= strs[i].length <= 100`
+- `strs[i]` consists of lowercase English letters.
+
+```ts title=solution.ts
+function groupAnagrams(strs: string[]): string[][] {
+  const map = new Map();
+  for (const str of strs) {
+    let letters = str.split("").sort().join("");
+    if (map.has(letters)) {
+      map.get(letters).push(str);
+    } else {
+      map.set(letters, [str]);
+    }
+  }
+  return Array.from(map.values());
+}
+```
+
+```ts title=solution2.ts
+function groupAnagrams(strs: string[]): string[][] {
+  let res = {};
+  for (const str of strs) {
+    let count = new Array(26).fill(0);
+    for (const char of str) {
+      count[char.charCodeAt(0) - 97]++;
+    }
+    let key = count.join("#");
+    if (res.hasOwnProperty(key)) {
+      res[key].push(str);
+    } else {
+      res[key] = [str];
+    }
+  }
+  return Object.values(res);
+}
+```
