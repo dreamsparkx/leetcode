@@ -37,55 +37,26 @@ Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 
 ```ts title=solution.ts
 function findMedianSortedArrays(ar1: number[], ar2: number[]): number {
-  let n = ar1.length;
-  let m = ar2.length;
-  let i = 0;
-
-  // Current index of input array ar2[]
-  let j = 0;
-  let count;
-  let m1 = -1,
-    m2 = -1;
-
-  // Since there are (n+m) elements,
-  // There are following two cases
-  // if n+m is odd then the middle
-  // index is median i.e. (m+n)/2
-  if ((m + n) % 2 == 1) {
-    for (count = 0; count <= (n + m) / 2; count++) {
-      if (i != n && j != m) {
-        m1 = ar1[i] > ar2[j] ? ar2[j++] : ar1[i++];
-      } else if (i < n) {
-        m1 = ar1[i++];
-      }
-
-      // For case when j<m,
-      else {
-        m1 = ar2[j++];
-      }
+  let length = ar1.length + ar2.length;
+  let index1 = 0,
+    index2 = 0;
+  let elements = [];
+  while (elements.length <= length / 2) {
+    if (
+      (ar1[index1] !== undefined && ar1[index1] < ar2[index2]) ||
+      ar2[index2] === undefined
+    ) {
+      elements.push(ar1[index1]);
+      index1++;
+    } else {
+      elements.push(ar2[index2]);
+      index2++;
     }
-    return m1;
   }
-
-  // Median will be average of elements
-  // at index ((m+n)/2 - 1) and (m+n)/2
-  // in the array obtained after merging
-  // ar1 and ar2
-  else {
-    for (count = 0; count <= (n + m) / 2; count++) {
-      m2 = m1;
-      if (i != n && j != m) {
-        m1 = ar1[i] > ar2[j] ? ar2[j++] : ar1[i++];
-      } else if (i < n) {
-        m1 = ar1[i++];
-      }
-
-      // For case when j<m,
-      else {
-        m1 = ar2[j++];
-      }
-    }
-    return (m1 + m2) / 2;
+  if ((length % 2 === 0 || length === 2) && elements.length >= 2) {
+    return (elements[elements.length - 2] + elements[elements.length - 1]) / 2;
+  } else {
+    return elements[elements.length - 1];
   }
 }
 ```
