@@ -1,0 +1,86 @@
+---
+title: 451. Sort Characters By Frequency (Medium)
+tags:
+  - Hash Table
+  - String
+  - Sorting
+  - Heap
+  - Priority Queue
+  - Bucket Sort
+  - Counting
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={[
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Heap",
+    "Bucket Sort",
+    "Counting",
+    "Priority Queue",
+  ]}
+  companies={["Google", "Amazon"]}
+  url={"https://leetcode.com/problems/sort-characters-by-frequency/"}
+/>
+
+Given a string `s`, sort it in <b>decreasing order</b> based on the <b>frequency</b> of the characters. The <b>frequency</b> of a character is the number of times it appears in the string.
+
+Return the sorted string. If there are multiple answers, return any of them.
+
+<b>Example 1:</b>
+
+```
+Input: s = "tree"
+Output: "eert"
+Explanation: 'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "cccaaa"
+Output: "aaaccc"
+Explanation: Both 'c' and 'a' appear three times, so both "cccaaa" and "aaaccc" are valid answers.
+Note that "cacaca" is incorrect, as the same characters must be together.
+```
+
+<b>Example 3:</b>
+
+```
+Input: s = "Aabb"
+Output: "bbAa"
+Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
+Note that 'A' and 'a' are treated as two different characters.
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 5 \* 10<sup>5</sup>
+- s consists of uppercase and lowercase English letters and digits.
+
+```ts title=solution.ts
+function frequencySort(s: string): string {
+  let seen = {};
+  let result = "";
+  for (const char of s) {
+    if (seen[char]) {
+      seen[char]++;
+    } else {
+      seen[char] = 1;
+    }
+  }
+  let sortedCharacterArray = Object.keys(seen).sort((a, b) => {
+    return seen[b] - seen[a];
+  });
+  for (let char of sortedCharacterArray) {
+    result += char.repeat(seen[char]);
+  }
+  return result;
+}
+```
