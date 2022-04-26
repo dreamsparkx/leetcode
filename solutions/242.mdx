@@ -1,0 +1,57 @@
+---
+title: 242. Valid Anagram (Easy)
+tags:
+  - Hash Table
+  - String
+  - Sorting
+  - Easy
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["Hash Table", "String", "Sorting"]}
+  url={"https://leetcode.com/problems/valid-anagram/"}
+/>
+
+Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
+
+An <b>Anagram</b> is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+<b>Example 1:</b>
+
+```
+Input: s = "anagram", t = "nagaram"
+Output: true
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "rat", t = "car"
+Output: false
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length, t.length <= 5 \* 10<sup>4</sup>
+- `s` and `t` consist of lowercase English letters.
+
+```ts title=solution.ts
+function isAnagram(s: string, t: string): boolean {
+  if (s.length !== t.length) {
+    return false;
+  }
+  const countLeftArr = new Array(26).fill(0);
+  const countRightArr = new Array(26).fill(0);
+  for (let i = 0; i < s.length; i++) {
+    const leftChar = s[i];
+    const rightChar = t[i];
+    countLeftArr[leftChar.charCodeAt(0) - 97]++;
+    countRightArr[rightChar.charCodeAt(0) - 97]++;
+  }
+  if (countLeftArr.join("#") === countRightArr.join("#")) return true;
+  return false;
+}
+```
