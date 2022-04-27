@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[9936],{8392:function(e){e.exports=JSON.parse('{"name":"Interactive","permalink":"/leetcode/solutions/tags/interactive","docs":[{"id":"278","title":"278. First Bad Version (Easy)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/278"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
