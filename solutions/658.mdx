@@ -1,0 +1,67 @@
+---
+title: 658. Find K Closest Elements (Medium)
+tags:
+  - Array
+  - Two Pointers
+  - Binary Search
+  - Sorting
+  - Heap
+  - Priority Queue
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={[
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting",
+    "Heap",
+    "Priority Queue",
+  ]}
+  companies={["Google"]}
+  url={"https://leetcode.com/problems/find-k-closest-elements/"}
+/>
+
+Given a <b>sorted</b> integer array `arr`, two integers `k` and `x`, return the `k` closest integers to `x` in the array. The result should also be sorted in ascending order.
+
+An integer `a` is closer to x than an integer `b` if:
+
+- `|a - x| < |b - x|`, or
+- `|a - x| == |b - x|` and `a < b`
+
+<b>Example 1:</b>
+
+```
+Input: arr = [1,2,3,4,5], k = 4, x = 3
+Output: [1,2,3,4]
+```
+
+<b>Example 2:</b>
+
+```
+Input: arr = [1,2,3,4,5], k = 4, x = -1
+Output: [1,2,3,4]
+```
+
+<b>Constraints:</b>
+
+- `1 <= k <= arr.length`
+- 1 <= arr.length <= 10<sup>4</sup>
+- `arr` is sorted in <b>ascending</b> order.
+- -10<sup>4</sup> <= arr[i], x <= 10<sup>4</sup>
+
+```ts title=solution.ts
+function findClosestElements(arr: number[], k: number, x: number): number[] {
+  let lo = 0,
+    hi = arr.length - 1;
+  while (lo < hi) {
+    const mid = parseInt(`${(lo + hi) / 2}`);
+    x - arr[mid] > arr[mid + k] - x ? (lo = mid + 1) : (hi = mid);
+  }
+  return arr.slice(lo, lo + k);
+}
+```
