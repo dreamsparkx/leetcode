@@ -1,0 +1,77 @@
+---
+title: 270. Closest Binary Search Tree Value (Medium)
+tags:
+  - Binary Search
+  - Divide and Conquer
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Binary Search", "Divide and Conquer"]}
+  companies={["Snapchat", "Microsoft", "Google"]}
+  url={"https://leetcode.com/problems/closest-binary-search-tree-value/"}
+/>
+
+Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+
+- Given target value is a floating point.
+- You are guaranteed to have only one unique value in the BST that is closest to the target.
+
+<b>Example 1</b>
+
+```
+Input: root = {5,4,9,2,#,8,10} and target = 6.124780
+Output: 5
+Explanation：
+Binary tree {5,4,9,2,#,8,10},  denote the following structure:
+        5
+       / \
+     4    9
+    /    / \
+   2    8  10
+```
+
+<b>Example 2</b>
+
+```
+Input: root = {3,2,4,1} and target = 4.142857
+Output: 4
+Explanation：
+Binary tree {3,2,4,1},  denote the following structure:
+     3
+    / \
+  2    4
+ /
+1
+```
+
+```ts title=solution.ts
+class TreeNode {
+  val: number;
+  left: TreeNode;
+  right: TreeNode;
+  constructor(val: number) {
+    this.val = val;
+    this.left = this.right = null;
+  }
+}
+
+const findClosestValueInBst = (tree: TreeNode, target) => {
+  let currentNode = tree;
+  let closest = Infinity;
+  while (currentNode !== null) {
+    if (Math.abs(target - currentNode.val) < Math.abs(target - closest)) {
+      closest = currentNode.val;
+    }
+    if (currentNode.val > target) {
+      currentNode = currentNode.left;
+    } else {
+      currentNode = currentNode.right;
+    }
+  }
+  return closest;
+};
+```
