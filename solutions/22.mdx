@@ -1,0 +1,64 @@
+---
+title: 22. Generate Parentheses (Medium)
+tags:
+  - String
+  - Dynamic Programming
+  - Backtracking
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["String", "Dynamic Programming", "Backtracking", "Medium"]}
+  companies={["Uber", "Google"]}
+  url={"https://leetcode.com/problems/generate-parentheses/"}
+/>
+
+Given `n` pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+<b>Example 1:</b>
+
+```
+Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+```
+
+<b>Example 2:</b>
+
+```
+Input: n = 1
+Output: ["()"]
+```
+
+<b>Constraints:</b>
+
+- `1 <= n <= 8`
+
+```ts title=solution.ts
+function generateParenthesis(n: number): string[] {
+  const output: string[] = [];
+  const dfs = (str: string, open: number, close: number) => {
+    // Close parenthesis can not be more than open parenthesis at any given time to stay valid
+    if (open > close) {
+      return;
+    }
+    // Base case. We now have n pairs of parenthesis
+    if (open == 0 && close === 0) {
+      output.push(str);
+      return;
+    }
+    // Insert open parenthesis and search for the next valid insertion.
+    if (open > 0) {
+      dfs(`${str}(`, open - 1, close);
+    }
+    // Insert close parenthesis and search for the next valid insertion.
+    if (close > 0) {
+      dfs(`${str})`, open, close - 1);
+    }
+  };
+  dfs("", n, n);
+  return output;
+}
+```

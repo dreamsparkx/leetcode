@@ -1,0 +1,83 @@
+---
+title: 20. Valid Parentheses (Easy)
+tags:
+  - String
+  - Stack
+  - Easy
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["String", "Stack"]}
+  companies={[
+    "Twitter",
+    "Airbnb",
+    "Amazon",
+    "Facebook",
+    "Microsoft",
+    "Bloomberg",
+    "Uber",
+    "Google",
+  ]}
+  url={"https://leetcode.com/problems/valid-parentheses/"}
+/>
+
+Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+
+An input string is valid if:
+
+1. Open brackets must be closed by the same type of brackets.
+2. Open brackets must be closed in the correct order.
+
+<b>Example 1:</b>
+
+```
+Input: s = "()"
+Output: true
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "()[]{}"
+Output: true
+```
+
+<b>Example 3:</b>
+
+```
+Input: s = "(]"
+Output: false
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 10<sup>4</sup>
+- s consists of parentheses only '()[]{}'.
+
+```ts title=solution.ts
+function isValid(s: string): boolean {
+  const stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let c: string = s[i];
+    switch (c) {
+      case "(":
+        stack.push(")");
+        break;
+      case "[":
+        stack.push("]");
+        break;
+      case "{":
+        stack.push("}");
+        break;
+      default:
+        if (c !== stack.pop()) {
+          return false;
+        }
+    }
+  }
+  return stack.length === 0;
+}
+```
