@@ -1,0 +1,58 @@
+---
+title: 253. Meeting Rooms II (Medium)
+tags:
+  - Heap
+  - Greedy
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Heap", "Greedy"]}
+  companies={["Google", "Facebook", "Uber"]}
+  url={"https://leetcode.com/problems/meeting-rooms-ii/"}
+/>
+
+Given an array of meeting time intervals consisting of start and end times `[[s1,e1],[s2,e2],...] (si < ei)`, find the minimum number of conference rooms required.)
+
+```
+Input: intervals = [(0,30),(5,10),(15,20)]
+Output: 2
+Explanation:
+We need two meeting rooms
+room1: (0,30)
+room2: (5,10),(15,20)
+```
+
+```
+Input: intervals = [(2,7)]
+Output: 1
+Explanation:
+Only need one meeting room
+```
+
+```ts title=solution.ts
+function minMeetingRooms(intervals: number[][]): number {
+  let n = intervals.length;
+  let ans = 0,
+    j = 0,
+    starts = [],
+    ends = [];
+  for (const [start, end] of intervals) {
+    starts.push(start);
+    ends.push(end);
+  }
+  starts.sort();
+  ends.sort();
+  for (let i = 0; i < n; i++) {
+    if (starts[i] < ends[j]) {
+      ans += 1;
+    } else {
+      j += 1;
+    }
+  }
+  return ans;
+}
+```

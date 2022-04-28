@@ -1,0 +1,61 @@
+---
+title: 316. Remove Duplicate Letters (Medium)
+tags:
+  - String
+  - Stack
+  - Greedy
+  - Monotonic Stack
+  - Medium
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["String", "Stack", "Greedy", "Monotonic Stack"]}
+  companies={["Google"]}
+  url={"https://leetcode.com/problems/remove-duplicate-letters/"}
+/>
+
+Given a string `s`, remove duplicate letters so that every letter appears once and only once. You must make sure your result is <b>the smallest in lexicographical order</b> among all possible results.
+
+<b>Example 1:</b>
+
+```
+Input: s = "bcabc"
+Output: "abc"
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "cbacdcbc"
+Output: "acdb"
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 10<sup>4</sup>
+- s consists of lowercase English letters.
+
+```ts title=solution.ts
+function removeDuplicateLetters(s: string): string {
+  let stack: string[] = [];
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    // if s[i] already appears in stack, jump to next loop
+    if (stack.indexOf(char) > -1) {
+      continue;
+    }
+    while (
+      stack.length > 0 &&
+      stack[stack.length - 1] > char &&
+      s.indexOf(stack[stack.length - 1], i) > i
+    ) {
+      stack.pop();
+    }
+    stack.push(char);
+  }
+  return stack.join("");
+}
+```
