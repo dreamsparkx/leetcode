@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[2052],{4233:function(e){e.exports=JSON.parse('{"name":"Design","permalink":"/leetcode/solutions/tags/design","docs":[{"id":"535","title":"535. Encode and Decode TinyURL (Medium)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/535"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
