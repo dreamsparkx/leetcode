@@ -1,0 +1,54 @@
+---
+title: 17. Letter Combinations of a Phone Number (Medium)
+tags:
+  - Hash Table
+  - String
+  - Backtracking
+  - Medium
+---
+
+import imageURL from "@site/static/img/solutions/17/image.png";
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Hash Table", "String", "Backtracking"]}
+  companies={["Amazon", "Facebook", "Dropbox", "Uber", "Google"]}
+  url={"https://leetcode.com/problems/letter-combinations-of-a-phone-number/"}
+/>
+
+Given a string containing digits from `2-9` inclusive, return all possible letter combinations that the number could represent. Return the answer in <b>any order</b>.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+<img src={imageURL} />
+
+```ts title=solution.ts
+function letterCombinations(digits: string): string[] {
+  if (digits === null || digits.length === 0) {
+    return [];
+  }
+  const map: Record<number, string> = {
+    2: "abc",
+    3: "def",
+    4: "ghi",
+    5: "jkl",
+    6: "mno",
+    7: "pqrs",
+    8: "tuv",
+    9: "wxyz",
+  };
+  const res: string[] = [];
+  const go = (i: number, s: string) => {
+    if (i === digits.length) {
+      res.push(s);
+      return;
+    }
+    for (const c of map[digits[i]]) {
+      go(i + 1, s + c);
+    }
+  };
+  go(0, "");
+  return res;
+}
+```
