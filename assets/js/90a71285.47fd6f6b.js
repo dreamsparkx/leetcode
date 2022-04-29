@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[5217],{786:function(e){e.exports=JSON.parse('{"name":"PayPal","permalink":"/leetcode/solutions/tags/pay-pal","docs":[{"id":"535","title":"535. Encode and Decode TinyURL (Medium)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/535"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
