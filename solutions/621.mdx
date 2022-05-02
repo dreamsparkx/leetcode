@@ -68,7 +68,7 @@ One possible solution is
 A -> B -> C -> A -> D -> E -> A -> F -> G -> A -> idle -> idle -> A -> idle -> idle -> A
 ```
 
-```ts solution.ts
+```ts title=solution.ts
 function leastInterval(tasks: string[], n: number): number {
   const charMap = new Map();
   let maxCharCount = 0;
