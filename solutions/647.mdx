@@ -1,0 +1,63 @@
+---
+title: 647. Palindromic Substrings (Medium)
+tags:
+  - String
+  - Dynamic Programming
+  - Medium
+  - Facebook
+  - LinkedIn
+---
+
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"medium"}
+  labels={["Array", "Dynamic Programming"]}
+  url={"https://leetcode.com/problems/palindromic-substrings/"}
+/>
+
+Given a string `s`, return the number of <b>palindromic substrings</b> in it.
+
+A string is a <b>palindrome</b> when it reads the same backward as forward.
+
+A <b>substring</b> is a contiguous sequence of characters within the string.
+
+<b>Example 1:</b>
+
+```
+Input: s = "abc"
+Output: 3
+Explanation: Three palindromic strings: "a", "b", "c".
+```
+
+<b>Example 2:</b>
+
+```
+Input: s = "aaa"
+Output: 6
+Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+```
+
+<b>Constraints:</b>
+
+- 1 <= s.length <= 1000
+- s consists of lowercase English letters.
+
+```ts solution.ts
+function countSubstrings(s: string): number {
+  let count = 0;
+  for (let i = 0; i < s.length; i += 1) {
+    helper(s, i, i); //found all single number length Palindromic
+    helper(s, i, i + 1); //found all even number length Palindromic
+  }
+  return count;
+
+  function helper(s, low, high) {
+    while (low >= 0 && high <= s.length && s[low] === s[high]) {
+      count += 1;
+      low -= 1;
+      high += 1;
+    }
+  }
+}
+```
