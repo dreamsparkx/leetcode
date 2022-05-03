@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkleetcode=self.webpackChunkleetcode||[]).push([[6636],{3640:function(e){e.exports=JSON.parse('{"name":"Tree","permalink":"/leetcode/solutions/tags/tree","docs":[{"id":"104","title":"104. Maximum Depth of Binary Tree (Easy)","description":"<SolutionDocHead","permalink":"/leetcode/solutions/104"}],"allTagsPath":"/leetcode/solutions/tags"}')}}]);
