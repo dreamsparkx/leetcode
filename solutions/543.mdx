@@ -1,0 +1,78 @@
+---
+title: 543. Diameter of Binary Tree (Easy)
+tags:
+  - Tree
+  - Depth First Search
+  - Binary Tree
+  - Easy
+  - Facebook
+  - Google
+---
+
+import imageURL from "@site/static/img/solutions/543/image.png";
+import SolutionDocHead from "../src/containers/SolutionDocHead";
+
+<SolutionDocHead
+  solutionType={"easy"}
+  labels={["Tree", "Depth First Search", "Binary Tree"]}
+  companies={["Facebook", "Google"]}
+  url={"https://leetcode.com/problems/diameter-of-binary-tree/"}
+/>
+
+Given the `root` of a binary tree, return the length of the <b>diameter</b> of the tree.
+
+The <b>diameter</b> of a binary tree is the <b>length</b> of the longest path between any two nodes in a tree. This path may or may not pass through the `root`.
+
+The <b>length</b> of a path between two nodes is represented by the number of edges between them.
+
+<b>Example 1:</b>
+<br />
+
+<img src={imageURL} />
+
+```
+Input: root = [1,2,3,4,5]
+Output: 3
+Explanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].
+```
+
+<b>Example 2:</b>
+
+```
+Input: root = [1,2]
+Output: 1
+```
+
+```ts title=TreeNode.ts
+class TreeNode {
+  val: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+  }
+}
+```
+
+```ts title=solution.ts
+function diameterOfBinaryTree(root: TreeNode | null): number {
+  let diameter = 0;
+  dfs(root);
+  return diameter;
+  function dfs(node: TreeNode | null) {
+    if (!node) {
+      return 0;
+    }
+    const left = dfs(node.left);
+    const right = dfs(node.right);
+
+    // update diameter at every node
+    diameter = Math.max(diameter, left + right);
+
+    // update the largest number of edge so far
+    return 1 + Math.max(left, right);
+  }
+}
+```
